@@ -339,7 +339,7 @@ fn main() {
         println!("Info about the project:\n"
         "dev team: Iam the only developer of this project.\n"
         "version: 0.1.0\n"
-        "Langauges used: Rust, Bash, \n"
+        "Langauges used: Rust, \n"
         "")
         println!("---------------------------------------------------------------");
         println!("Thank you for using this tool!");
