@@ -9,6 +9,10 @@
 
 **last chages**
 - added color to text ([ok] and [threat])
-- 
+- added hashes to the sigantures list for better detection
+- i dont know what i added more (i added so much)
+
+
+
 
 **work in progress**
