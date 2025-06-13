@@ -1,0 +1,13 @@
+[package]
+name = "linux_defender"
+version = "0.9.3"
+edition = "2021"
+authors = ["Dogwalker-kryt"]
+description = "A simple terminal-based antivirus scanner for Linux."
+license = "MIT"
+
+[dependencies]
+chrono = "0.4.41"
+colored = "3.0.0"
+sha2 = "0.10"
+ureq = { version = "2.9.1", features = ["charset"] }
