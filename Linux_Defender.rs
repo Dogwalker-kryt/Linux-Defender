@@ -1,11 +1,17 @@
 use std::collections::HashSet;
-use std::fs;
+use std::{fs};
 use std::io::{self, Write, BufRead, BufReader};
 use std::path::Path;
 use sha2::{Sha256, Digest};
 use std::io::Read;
 use chrono::Local;
 use colored::*;
+use aes::Aes256;
+use block_modes::{BlockMode, Cbc};
+use block_modes::block_padding::Pkcs7;
+use rand::RngCore;
+use rand::rngs::OsRng;
+use std::fs::File;
 
 
 
@@ -13,6 +19,69 @@ const ALLOWLIST_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/allow
 const ERRORLOG_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/ErrorLog.txt";
 const SCANLOG_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/scanlog.txt";
 const QUARANTINE_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/Quarantine/";
+const SIGNATURES_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/signatures.txt";
+const ENCRYPTION_KEYS: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/keys/"; // Placeholder for encryption key
+
+type Aes256Cbc = Cbc<Aes256, Pkcs7>;
+
+fn encrypt_file(path: &Path) -> io::Result<()> {
+    // Erzeuge neuen zufälligen AES-256 Schlüssel
+    let mut key = [0u8; 32];
+    OsRng.fill_bytes(&mut key);
+    // Speichere Key als .key-Datei im keys-Ordner
+    let file_stem = path.file_stem().and_then(|s| s.to_str()).unwrap_or("file");
+    let key_path = format!("{}{}.key", ENCRYPTION_KEYS, file_stem);
+    let mut key_file = File::create(&key_path)?;
+    key_file.write_all(&key)?;
+    // Verschlüsselung
+    let mut file = File::open(path)?;
+    let mut data = Vec::new();
+    file.read_to_end(&mut data)?;
+    let mut iv = [0u8; 16];
+    OsRng.fill_bytes(&mut iv);
+    let cipher = Aes256Cbc::new_from_slices(&key, &iv).unwrap();
+    let ciphertext = cipher.encrypt_vec(&data);
+    let mut out_path = path.to_path_buf();
+    out_path.set_extension("enc");
+    let mut out_file = File::create(&out_path)?;
+    out_file.write_all(&iv)?;
+    out_file.write_all(&ciphertext)?;
+    println!("[Encrypt] File encrypted and saved as {}", out_path.display());
+    println!("[Encrypt] Key saved as {}", key_path);
+    Ok(())
+}
+
+fn decrypt_file(path: &Path) -> io::Result<()> {
+    // Lade passenden Key anhand des Dateinamens
+    let file_stem = path.file_stem().and_then(|s| s.to_str()).unwrap_or("file");
+    let key_path = format!("{}{}.key", ENCRYPTION_KEYS, file_stem);
+    let mut key_file = File::open(&key_path)?;
+    let mut key = [0u8; 32];
+    key_file.read_exact(&mut key)?;
+    let mut file = File::open(path)?;
+    let mut iv = [0u8; 16];
+    file.read_exact(&mut iv)?;
+    let mut ciphertext = Vec::new();
+    file.read_to_end(&mut ciphertext)?;
+    let cipher = Cbc::<Aes256, Pkcs7>::new_from_slices(&key, &iv).unwrap();
+    let decrypted_data: Vec<u8> = match cipher.decrypt_vec(&ciphertext) {
+        Ok(d) => d,
+        Err(e) => {
+            println!("[Error] Decryption failed: {}", e);
+            errorlog("Decrypt File", &format!("Decryption failed: {}", e));
+            return Ok(());
+        }
+    };
+    let mut out_path = path.with_extension("");
+    let orig_ext = path.extension().and_then(|e| e.to_str()).unwrap_or("");
+    if orig_ext == "enc" {
+        out_path.set_extension("");
+    }
+    let mut out_file = File::create(&out_path)?;
+    out_file.write_all(&decrypted_data)?;
+    println!("[Decrypt] File decrypted and saved as {}", out_path.display());
+    Ok(())
+}
 
 fn errorlog(menu: &str, error_msg: &str) {
     let now = Local::now();
@@ -519,7 +588,7 @@ fn remove_file() {
 
 fn main() {
     // Optimiert: Signaturen, Allowlist und Quarantäne-Liste einmal laden
-    let signatures = load_signatures_set("/home/<username>/Linux_AV/usr/Linux_Defender/signatures.txt");
+    let signatures = load_signatures_set(SIGNATURES_PATH);
     let allowlist = load_set(ALLOWLIST_PATH);
     let quarantine = load_set(QUARANTINE_PATH);
     loop {
@@ -540,8 +609,9 @@ fn main() {
         println!("1. Scan for Malware");
         println!("2. Show last scan log");
         println!("3. Allow/Quarantine/Remove a file");
-        println!("4. Exit");
-        println!("5. Information");
+        println!("4. Encrypt/Decrypt a file");
+        println!("5. Exit");
+        println!("6. Information");
         println!("-----------------------------------------\n");
         let mut choice = String::new();
         io::stdin().read_line(&mut choice).expect("Failed to read input");
@@ -709,10 +779,50 @@ fn main() {
                 }
             },
             "4" => {
+                println!("--------- Encrypt/Decrypt Options ---------");
+                println!("1. Encrypt a file");
+                println!("2. Decrypt a file");
+                println!("3. Back to main menu");
+                println!("-------------------------------------------\n");
+                let mut encrypt_decrypt_choice = String::new();
+                io::stdin().read_line(&mut encrypt_decrypt_choice).expect("Failed to read input");
+                match encrypt_decrypt_choice.trim() {
+                    "1" => {
+                        println!("Enter the path of the file to encrypt:");
+                        let mut path = String::new();
+                        io::stdin().read_line(&mut path).expect("Failed to read input");
+                        let path = path.trim();
+                        if Path::new(path).exists() {
+                            let _ = encrypt_file(Path::new(path));
+                        } else {
+                            println!("[Error] The specified file does not exist or is unreadable!");
+                            errorlog("Encrypt File", &format!("File does not exist: {}", path));
+                        }
+                    },
+                    "2" => {
+                        println!("Enter the path of the file to decrypt:");
+                        let mut path = String::new();
+                        io::stdin().read_line(&mut path).expect("Failed to read input");
+                        let path = path.trim();
+                        if Path::new(path).exists() {
+                            let _ = decrypt_file(Path::new(path));
+                        } else {
+                            println!("[Error] The specified file does not exist or is unreadable!");
+                            errorlog("Decrypt File", &format!("File does not exist: {}", path));
+                        }
+                    },
+                    "3" => continue,
+                    _ => {
+                        println!("[Error] Invalid option, please try again.");
+                        errorlog("Encrypt/Decrypt", "Invalid option selected");
+                    }
+                }
+            },
+            "5" => {
                 println!("Exiting...");
                 break;
             },
-            "5" => {
+            "6" => {
                 println!("--------- Information ---------");
                 println!("Welcome to Linux Defender!");
                 println!("This is a custom terminal-based anti-malware for Linux (Ubuntu-based systems).");
@@ -722,7 +832,7 @@ fn main() {
                 println!("---------------------------------------------------------------");
                 println!("Info about the project:\n");
                 println!("dev team: I am the only developer of this project.");
-                println!("version: 0.9.3");
+                println!("version: 0.9.4");
                 println!("Languages used: Rust");
                 println!("---------------------------------------------------------------");
                 println!("Thank you for using this tool!");
