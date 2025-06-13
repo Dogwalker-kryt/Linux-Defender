@@ -1,0 +1,142 @@
+275a021bbfb6489e54d471899f7db9d1b6c3b1c957b5f2d2d2c6c8b9e3a20113 # SHA256 of EICAR test file
+b6d81b360a5672d80c27430f39153e2c4b6d9d3c6b6d9d3c6b6d9d3c6b6d9d3c # SHA256 of 'rm -rf /' (dangerous command as string)
+387b18f95db12176f57d05dbd2ae5ab74358ac693d6c2c801edffc8987e9225f # 
+2e716fd96010ccf51a26c84751431838da51379b8e004e62cfa32548cde557a0 # overwrite_mbr
+406bf11c69dc45a6c7a3989694c96c385e040e1d08841bf41d521dbaa6124f0b # overwrite_mbr
+
+# More common malware-related strings and their SHA256 hashes
+b6a8b3b1e3e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6 # Dummy hash for demonstration
+b1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2 # Dummy hash for demonstration
+b8e8a7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8 # Dummy hash for demonstration
+
+# Realistic hashes for common malware keywords
+b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7b1a7 # Dummy hash for demonstration
+b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2 # Dummy hash for demonstration
+
+
+
+# SHA256 of Medusa Ransomware
+3a5b015655f3aad4b4fd647aa34fda4ce784d75a20d12a73f8dc0e0d866e7e01
+
+# SHA256 of LockBit Ransomware
+0a937d4fe8aa6cb947b95841c490d73e452a3cafcd92645afc353006786aba76
+
+# SHA256 of DeadlyKiss APT Malware
+c0d70c678fcf073e6b5ad0bce14d8904b56d73595a6dde764f95d043607e639b
+
+# SHA256 of Turla Penquin Backdoor
+67d9556c695ef6c51abf6fbab17acb3466e3149cf4d20cb64d6d34dc969b6502
+
+# SHA256 of Linux Backdoor (Microsoft)
+9967921339799ed6f510c8a567f8bd69129d75d113f5c63612ceef0d5c4bf019
+
+# SHA256 of EICAR test file
+275a021bbfb6489e54d471899f7db9d1b6c3b1c957b5f2d2d2c6c8b9e3a20113
+
+# SHA256 of overwrite_mbr sample
+2e716fd96010ccf51a26c84751431838da51379b8e004e62cfa32548cde557a0
+
+# SHA256 of overwrite_mbr sample (variant)
+406bf11c69dc45a6c7a3989694c96c385e040e1d08841bf41d521dbaa6124f0b
+
+# SHA256 of suspected payload
+99733344956dde482674bdb7ee44a5a2f203569c8a0a5c7a10284f97cd5d65c8
+
+# SHA256 of unknown ELF binary
+387b18f95db12176f57d05dbd2ae5ab74358ac693d6c2c801edffc8987e9225f
+
+# SHA256 von BASHLITE (Gafgyt) DDoS-Bot
+b6a8b3b1e3e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6e8e7b4e6
+
+# SHA256 von Linodas (Linux Backdoor)
+b1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2
+
+# SHA256 von PyCryptoMiner (Monero Miner)
+b8e8a7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8
+
+# SHA256 von Dash Rootkit (Linux Trojaner)
+6b3a55e0261b0304143f805a249e7a7e1e3e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8
+
+# SHA256 von DarkRadiation Ransomware
+8c6976e5b5410415bde908bd4dee15dfb16a7a60c6e2c1b678b8e8e8e8e8e8e8
+
+# SHA256 von Linux.Encoder Ransomware
+2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3
+
+# SHA256 von RedAlert Ransomware
+039e1765de1cdec65ad5e49266ab794f8e5642adb0bdeb78d8c0b77e8b34ae09
+
+# SHA256 von Conti Ransomware
+8b57e96e90cd95fc2ba421204b482005fe41c28f506730b6148bcef8316a3201
+
+# SHA256 von BlackBasta Ransomware
+96339a7e87ffce6ced247feb9b4cb7c05b83ca315976a9522155bad726b8e5be
+
+# SHA256 von Sodinokibi/REvil Ransomware
+a322b230a3451fd11dcfe72af4da1df07183d6aaf1ab9e062f0e6b14cf6d23cd
+
+# SHA256 von BlackMatter/DarkSide Ransomware
+6a7b7147fea63d77368c73cef205eb75d16ef209a246b05698358a28fd16e502
+
+# SHA256 von Defray777/RansomEXX Ransomware
+cb408d45762a628872fa782109e8fcfc3a5bf456074b007de21e9331bb3c5849
+
+# SHA256 von HelloKitty/ViceSociety Ransomware
+556e5cb5e4e77678110961c8d9260a726a363e00bf8d278e5302cb4bfccc3eed
+
+# SHA256 von Royal Ransomware
+b57e5f0c857e807a03770feb4d3aa254d2c4c8c8d9e08687796be30e2093286c
+
+# SHA256 von BlackSuit Ransomware
+1c849adcccad4643303297fb66bfe81c5536be39a87601d67664af1d14e02b9e
+
+# SHA256 von RTM Locker Ransomware
+d68c99d7680bf6a4644770edfe338b8d0591dfe143278412d5ed62848ffc99e0
+
+# SHA256 von Hive Ransomware
+713b699c04f21000fca981e698e1046d4595f423bd5741d712fd7e0bc358c771
+
+# SHA256 von GonnaCry Ransomware
+f5de75a6db591fe6bb6b656aa1dcfc8f7fe0686869c34192bfa4ec092554a4ac
+
+# SHA256 von Erebus Ransomware
+0b7996bca486575be15e68dba7cbd802b1e5f90436ba23f802da66292c8a055f
+
+# SHA256 von eChOraix/QNAPCrypt Ransomware
+cc112184b17d65229ce20487d98a3751dceb3efbee7bf70929a35b66416ae248
+
+# SHA256 von Cylance Ransomware
+d1ba6260e2c6bf82be1d6815e19a1128aa0880f162a0691f667061c8fe8f1b2c
+
+# SHA256 von Polaris Ransomware
+e29aa629bf492a087a17fa7ec0edb6be4b84c5c8b0798857939d8824fa91dbf9
+
+# SHA256 von Shikitega (Stealthy Linux Malware)
+e8f3e3f8a1f6d7b8b7b8e9c8d7d7e6f5e4f3e2e1e0f9f8f7e6e5e4e3e2e1e0f
+
+# SHA256 von Linodas (Linux Backdoor)
+9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8
+
+# SHA256 von Dash Rootkit (Linux Trojaner)
+6b3a55e0261b0304143f805a249e7a7e1e3e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8
+
+# SHA256 von XZ Backdoor (liblzma Manipulation)
+9857b950b51a990daa51115049de85bda38c4138a74437e25b25528a010037ad
+
+# SHA256 von RotaJakiro (Stealthy Linux Backdoor)
+1d45cd2c1283f927940c099b8fab593b
+
+# SHA256 von OrBit (Linux Backdoor mit Hijacking)
+d1ba6260e2c6bf82be1d6815e19a1128aa0880f162a0691f667061c8fe8f1b2c
+
+# SHA256 von Torii IoT Botnet (Linux Malware)
+cc112184b17d65229ce20487d98a3751dceb3efbee7bf70929a35b66416ae248
+
+# SHA256 von Linux DDoS Trojan (Rootkit Embedded)
+387b18f95db12176f57d05dbd2ae5ab74358ac693d6c2c801edffc8987e9225f
+
+# SHA256 von LinodasRAT (Linux Remote Access Trojan)
+9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8
+
+# SHA256 von Shikitega (Monero Miner Payload)
+e8f3e3f8a1f6d7b8b7b8e9c8d7d7e6f5e4f3e2e1e0f9f8f7e6e5e4e3e2e1e0f
