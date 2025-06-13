@@ -3,8 +3,8 @@
 my own terminal based Antivirus for Linux
 
 **Warning**
-- the hole code is self made, but if i cant realy provide support! i can only fix issues of th code
-- this is not an replace ment for an aktual Antivirus
+- the hole code is self made, but i cant realy provide support! i can only fix issues of the code
+- this is not an replace ment for an actual Antivirus
 - use at your own risk
 
 **Funktions**
@@ -36,5 +36,5 @@ Thank you for checking out my custom Antivirus for Linux
 
 
 **work in progress**
-- please if you try my antivirus report issues and erros (with a good explenation)
+- please if you try my antivirus report issues and erros (with a good explenation so i can fix them fast)
 
