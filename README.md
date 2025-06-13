@@ -17,4 +17,4 @@
 
 **work in progress**
 - please if you try my antivirus report issues and erros (with a good explenation)
-- if you have ideas waht i could add, just comment my repo
+
