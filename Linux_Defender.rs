@@ -48,6 +48,9 @@ fn encrypt_file(path: &Path) -> io::Result<()> {
     out_file.write_all(&ciphertext)?;
     println!("[Encrypt] File encrypted and saved as {}", out_path.display());
     println!("[Encrypt] Key saved as {}", key_path);
+    println!("Press Enter to return to the main menu...");
+    let mut dummy = String::new();
+    let _ = io::stdin().read_line(&mut dummy);
     Ok(())
 }
 
@@ -80,6 +83,9 @@ fn decrypt_file(path: &Path) -> io::Result<()> {
     let mut out_file = File::create(&out_path)?;
     out_file.write_all(&decrypted_data)?;
     println!("[Decrypt] File decrypted and saved as {}", out_path.display());
+    println!("Press Enter to return to the main menu...");
+    let mut dummy = String::new();
+    let _ = io::stdin().read_line(&mut dummy);
     Ok(())
 }
 
@@ -440,6 +446,9 @@ fn allow_file() {
         println!("{}", "[Error] Could not open allowlist file.".white());
         errorlog("Allow File", "Could not open allowlist file for writing");
     }
+    println!("Press Enter to return to the main menu...");
+    let mut dummy = String::new();
+    let _ = io::stdin().read_line(&mut dummy);
 }
 
 fn quarantine_file() {
@@ -504,6 +513,9 @@ fn quarantine_file() {
         println!("[Error] The specified file does not exist, is invalid or unreadable!");
         errorlog("Quarantine File", &format!("File does not exist: {}", path));
     }
+    println!("Press Enter to return to the main menu...");
+    let mut dummy = String::new();
+    let _ = io::stdin().read_line(&mut dummy);
 }
 
 fn remove_file() {
@@ -581,6 +593,9 @@ fn remove_file() {
         println!("[Error] The specified file does not exist, is invalid or unreadable!");
         errorlog("Remove File", &format!("File does not exist: {}", path));
     }
+    println!("Press Enter to return to the main menu...");
+    let mut dummy = String::new();
+    let _ = io::stdin().read_line(&mut dummy);
 }
 
 
@@ -788,12 +803,14 @@ fn main() {
                 io::stdin().read_line(&mut encrypt_decrypt_choice).expect("Failed to read input");
                 match encrypt_decrypt_choice.trim() {
                     "1" => {
-                        println!("Enter the path of the file to encrypt:");
+                        println!("[Encrypt] Enter the path of the file to encrypt:");
+                        println!("{}", "[Warning] The original file will be replaced with the encrypted version! so make a backup or dont lose the key!".red());
                         let mut path = String::new();
                         io::stdin().read_line(&mut path).expect("Failed to read input");
                         let path = path.trim();
                         if Path::new(path).exists() {
                             let _ = encrypt_file(Path::new(path));
+                            let _ = fs::remove_file(Path::new(path));
                         } else {
                             println!("[Error] The specified file does not exist or is unreadable!");
                             errorlog("Encrypt File", &format!("File does not exist: {}", path));
@@ -806,6 +823,7 @@ fn main() {
                         let path = path.trim();
                         if Path::new(path).exists() {
                             let _ = decrypt_file(Path::new(path));
+                            let _ = fs::remove_file(path);
                         } else {
                             println!("[Error] The specified file does not exist or is unreadable!");
                             errorlog("Decrypt File", &format!("File does not exist: {}", path));
