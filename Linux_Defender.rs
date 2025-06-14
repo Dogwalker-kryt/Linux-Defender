@@ -15,12 +15,12 @@ use std::fs::File;
 
 
 
-const ALLOWLIST_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/allowlist.txt";
-const ERRORLOG_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/ErrorLog.txt";
-const SCANLOG_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/scanlog.txt";
-const QUARANTINE_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/Quarantine/";
-const SIGNATURES_PATH: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/signatures.txt";
-const ENCRYPTION_KEYS: &str = "/home/<username>/Linux_AV/usr/Linux_Defender/keys/"; // Placeholder for encryption key
+const ALLOWLIST_PATH: &str = "/home/dog/Schreibtisch/Linux_AV/usr/Linux_Defender/allowlist.txt";
+const ERRORLOG_PATH: &str = "/home/dog/Schreibtisch/Linux_AV/usr/Linux_Defender/ErrorLog.txt";
+const SCANLOG_PATH: &str = "/home/dog/Schreibtisch/Linux_AV/usr/Linux_Defender/scanlog.txt";
+const QUARANTINE_PATH: &str = "/home/dog/Schreibtisch/Linux_AV/usr/Linux_Defender/Quarantine/";
+const SIGNATURES_PATH: &str = "/home/dog/Schreibtisch/Linux_AV/usr/Linux_Defender/signatures.txt";
+const ENCRYPTION_KEYS: &str = "/home/dog/Schreibtisch/Linux_AV/usr/Linux_Defender/keys/"; // Placeholder for encryption key
 
 type Aes256Cbc = Cbc<Aes256, Pkcs7>;
 
